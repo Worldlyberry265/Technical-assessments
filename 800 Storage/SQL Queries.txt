@@ -1,0 +1,52 @@
+1)CREATE DATABASE Storage800
+
+2)Use Database Storage800
+
+3)Creating the Tables:
+
+Products:
+CREATE TABLE Products(
+id INT PRIMARY KEY AUTO_INCREMENT,
+prodname VARCHAR(50) NOT NULL,
+descrip TEXT,
+category VARCHAR(30) NOT NULL,
+creation_date TIMESTAMP NOT NULL,
+);
+
+Clients:
+CREATE TABLE Clients(
+id INT PRIMARY KEY AUTO_INCREMENT,
+firstname VARCHAR(50) NOT NULL,
+lastname VARCHAR(50) NOT NULL,
+mobile VARCHAR (20) NOT NULL,
+UNIQUE(mobile)
+);
+
+Sales:
+CREATE TABLE Sales(
+id INT PRIMARY KEY AUTO_INCREMENT,
+creation_date TIMESTAMP NOT NULL,
+client_id INT NOT NULL,
+seller_id INT NOT NULL,
+total_quantity INT NOT NULL,
+price FLOAT NOT NULL,
+FOREIGN KEY (client_id) REFERENCES Clients (id),
+FOREIGN KEY (seller_id) REFERENCES Clients (id)
+);
+
+//I implemented the database as the client can only update the sales request, not the 
+seller.
+
+CREATE TABLE SalesLog(
+sale_id INT NOT NULL,
+updater_id INT NOT NULL,
+creation_date TIMESTAMP NOT NULL,
+update_date TIMESTAMP NOT NULL,
+old_quantity INT NOT NULL,
+new_quantity INT NOT NULL,
+old_price FLOAT NOT NULL,
+new_price FLOAT NOT NULL,
+PRIMARY KEY (sales_id, updater_id, update_date),
+FOREIGN KEY (sales_id ) REFERENCES Sales(id),
+FOREIGN KEY (updater_id) REFERENCES Clients (id)
+);

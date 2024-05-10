@@ -1,0 +1,56 @@
+<div class="Page__Container">
+    <h1 class="Page__Container--Header"> Users List</h1>
+
+        <mat-form-field class="input-field">
+          <mat-label>Search User By Id</mat-label>
+          <input matInput placeholder="1" name="Id" (keyup)="SearchUsersById($any($event).target.value)" type="text"  autocomplete="off">
+        </mat-form-field>
+
+        <mat-progress-bar style="margin-bottom: 2rem;" mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+        <div class="Table__Container" >
+
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="avatar">
+                <th mat-header-cell *matHeaderCellDef disableClear class="Table__Header--titles"> Avatar
+                </th>
+                <td mat-cell *matCellDef="let element"> <img class="Table__Tuples--images" [src]="element.avatar"
+                        [alt]="'element' + element.id"> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="first_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear class="Table__Header--titles"> First
+                    Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="last_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear class="Table__Header--titles"> Last
+                    Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="Table__Header--titles"> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr (click)="ShowUserInfo(row.id)" class="Table__Tuples" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+        
+    <mat-paginator 
+        
+        [length]="UsersCount" 
+        [pageSize]="pageSize" 
+        showFirstLastButtons  
+        (page)="onPageChange($event)">
+        
+    </mat-paginator>
+    
+    </div>
+
+</div>

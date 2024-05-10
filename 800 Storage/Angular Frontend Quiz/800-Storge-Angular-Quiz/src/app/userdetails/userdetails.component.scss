@@ -1,0 +1,83 @@
+.Card {
+
+    &__Container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    &__Wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 1.5rem 4rem rgba(black, .15);
+        border-radius: .5rem;
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        padding: 4rem 8rem 4rem 8rem;
+        background-color: white;
+    }
+
+}
+
+.Details {
+
+    &__Avatar {
+        border-radius: 50%;
+        width: 80%;
+        height: 80%;
+        margin: auto;
+        margin-bottom: 2rem;
+    }
+
+
+    &__Label {
+        font-size: 3rem;
+        font-weight: 500;
+        margin-bottom: .5rem;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid black;
+
+        }
+    }
+
+    &__Value {
+        font-size: 2rem;
+        font-weight: 300;
+
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.GoBackButton {
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 500;
+    color: white;
+    background-color: rgba(0, 0, 0, 1);
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: .5rem;
+    transition: all .5s ease-in-out;
+
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .15);
+        background-color: white;
+        color: black;
+        font-weight: 700;
+    }
+
+    &:active,
+    &:visited {
+        transform: scale(1);
+    }
+
+}
